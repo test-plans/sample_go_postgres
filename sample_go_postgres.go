@@ -1,9 +1,10 @@
-package sample
+package sample_go_postgres
 
 import (
-	_ "github.com/lib/pq"
 	"database/sql"
 	"log"
+
+	_ "github.com/lib/pq"
 )
 
 func GetResult() string {

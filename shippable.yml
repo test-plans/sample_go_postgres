@@ -7,6 +7,17 @@ go:
 addons:
   postgresql: "9.3"
 
+env:
+  - CI_REPORT=shippable/testresults/junit.xml
+
+before_install:
+  - go get github.com/lib/pq
+  - go get github.com/t-yuki/gocover-cobertura
+  - go get github.com/onsi/gomega
+  - go get github.com/onsi/ginkgo
+  - mkdir -p $GOPATH/src/github.com/Shippable
+  - ln -sfn $PWD $GOPATH/src/github.com/Shippable/sample_go
+
 # Make folders for the reports
 before_script:
   - mkdir -p shippable/testresults
@@ -14,17 +25,5 @@ before_script:
   - psql -c 'CREATE DATABASE test;' -U postgres
 
 script:
-  - export GOPATH=$PWD
-  - export PATH=$PATH:$GOPATH/bin
-  - go get code.google.com/p/go.tools/cmd/cover
-  - go get github.com/t-yuki/gocover-cobertura
-  - go get github.com/lib/pq
-  - go get github.com/onsi/gomega
-  - go get github.com/onsi/ginkgo
-  - go install github.com/OneRedOak/sample
-  - go test -coverprofile=coverage.txt -covermode count github.com/OneRedOak/sample
-  - gocover-cobertura < coverage.txt > coverage.xml
-
-after_script:
-  - mv $PWD/src/github.com/OneRedOak/sample/junit.xml $PWD/shippable/testresults/
-  - mv $PWD/coverage.xml $PWD/shippable/codecoverage/
+  - go test -coverprofile=coverage.txt -covermode count ./
+  - $GOPATH/bin/gocover-cobertura < coverage.txt > shippable/codecoverage/coverage.xml

@@ -15,7 +15,7 @@ before_install:
   - go get github.com/t-yuki/gocover-cobertura
   - go get github.com/onsi/gomega
   - go get github.com/onsi/ginkgo
-  - go get code.google.com/p/go.tools/cmd/cover
+#  - go get code.google.com/p/go.tools/cmd/cover
   - mkdir -p $GOPATH/src/github.com/Shippable
   - ln -sfn $PWD $GOPATH/src/github.com/Shippable/sample_go
 

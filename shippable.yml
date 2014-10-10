@@ -26,6 +26,7 @@ before_script:
   - psql -c 'drop database if exists test;' -U postgres -w
   - psql -c 'CREATE DATABASE test;' -U postgres
 archive: true
+
 script:
   - go test -coverprofile=coverage.txt -covermode count ./
   - $GOPATH/bin/gocover-cobertura < coverage.txt > shippable/codecoverage/coverage.xml

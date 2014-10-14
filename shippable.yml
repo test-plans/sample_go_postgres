@@ -34,3 +34,5 @@ script:
 notifications:
  email: false
 #cache: true 
+after_script:
+  - cp README.md ./shippable

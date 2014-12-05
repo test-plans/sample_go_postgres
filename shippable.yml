@@ -6,7 +6,7 @@ go:
 
 # Addons used by app
 addons:
-  postgresql: "9.2"
+  postgresql: "9.1"
 
 env:
   - CI_REPORT=shippable/testresults/junit.xml

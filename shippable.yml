@@ -7,10 +7,15 @@ go:
 
 # Addons used by app
 addons:
-  postgresql: "9.2"
+  postgresql: "9.3"
+  
 
 env:
+  global:
   - CI_REPORT=shippable/testresults/junit.xml
+  - foo=bar
+  - secure: hUzHqlEn/cNU7MaY4lL3k5UsmY1gAFOVj5/CyoQ797xSVfPa6D+5/Gal5uyYzUk5+c4DJJO2KnzBiOO6pYv7rL328TepyE212ySFFz2XBA/5KA9hxjNRR8SlM8Z1dXST/cOj10P6citCALUrSzjAxYkn9eT04+1r5Ccb6HUvIksALTwYUB4zOuYYkkMaDiUX+ZWdJiZbrcEyf5TOnAaWxuWy6jrN4him7c4TjcYCGAsjf320u90x9bOggORnB3Vs2HKdOsZrH1DXPxhNVDKA+g2/Ai8e3qV6IdrfKWrcxKSWMXIMpCtBPLBvSNQi44CwulfGFTPgEHP8TABI6ai5Pg==
+  
 
 before_install:
   - go get github.com/lib/pq
@@ -32,6 +37,7 @@ archive: true
 
 
 script:
+  - echo $key1
   - go test -coverprofile=coverage.txt -covermode count ./
   - $GOPATH/bin/gocover-cobertura < coverage.txt > shippable/codecoverage/coverage.xml
 

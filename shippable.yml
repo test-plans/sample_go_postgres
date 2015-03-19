@@ -33,6 +33,7 @@ before_script:
   - mkdir -p shippable/codecoverage
   - psql -c 'drop database if exists test;' -U postgres -w
   - psql -c 'CREATE DATABASE test;' -U postgres
+
 archive: true
 
 
@@ -46,3 +47,6 @@ notifications:
 #cache: true 
 after_script:
   - cp README.md ./shippable
+  - echo "hi"
+
+#testing pr2

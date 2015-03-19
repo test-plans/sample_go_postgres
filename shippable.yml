@@ -47,5 +47,6 @@ notifications:
 #cache: true 
 after_script:
   - cp README.md ./shippable
+  - echo "hi"
 
 #testing pr2

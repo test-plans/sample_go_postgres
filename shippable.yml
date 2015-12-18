@@ -9,6 +9,8 @@ go:
 
 #build_image: shippable/minv2:beta
 
+services:
+  - postgres
 # Addons used by app
 build_image: drydock/u12golall:tip
 

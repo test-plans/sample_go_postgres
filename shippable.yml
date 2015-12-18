@@ -12,6 +12,9 @@ go:
 # Addons used by app
 build_image: drydock/u12golall:tip
 
+services:
+  - postgres
+  
 env:
   global:
   - CI_REPORT=shippable/testresults/junit.xml
